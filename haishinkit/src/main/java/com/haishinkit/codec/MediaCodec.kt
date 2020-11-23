@@ -12,8 +12,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder
 import java.lang.IllegalStateException
 import java.nio.ByteBuffer
 import java.util.concurrent.atomic.AtomicBoolean
+import kotlin.properties.Delegates
 
-internal abstract class MediaCodec(private val mime: String) : Running {
+abstract class MediaCodec(private val mime: String) : Running {
+    open class Setting(private var codec: com.haishinkit.codec.MediaCodec?) {
+        var options: List<CodecOption> by Delegates.observable(listOf()) { _, _, newValue ->
+            codec?.options = newValue
+        }
+    }
+
     interface Listener {
         fun onFormatChanged(mime: String, mediaFormat: MediaFormat)
         fun onSampleOutput(mime: String, info: MediaCodec.BufferInfo, buffer: ByteBuffer)

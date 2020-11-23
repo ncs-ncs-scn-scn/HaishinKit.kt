@@ -15,8 +15,8 @@ import com.haishinkit.gles.renderer.GlFramePixelRenderer
 import java.lang.ClassCastException
 import java.lang.ref.WeakReference
 
-internal class GlPixelTransform {
-    internal interface Listener {
+class GlPixelTransform {
+    interface Listener {
         fun onConfiguration()
     }
 

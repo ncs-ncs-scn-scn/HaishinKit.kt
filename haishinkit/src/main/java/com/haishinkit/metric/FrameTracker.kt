@@ -27,6 +27,18 @@ class FrameTracker {
     }
 
     private fun print(type: Int, timestamp: Long) {
+        when (type) {
+            TYPE_AUDIO -> {
+                if (audioTimestamp == -1L) {
+                    audioTimestamp = timestamp
+                }
+            }
+            TYPE_VIDEO -> {
+                if (videoTimestamp == -1L) {
+                    videoTimestamp = timestamp
+                }
+            }
+        }
     }
 
     companion object {
